@@ -9,7 +9,7 @@ class Ciphers(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def rot(self, ctx, message, direction=None):
+    async def rot(self, ctx, message, pipe="none"):
         allrot = ''
         
         for i in range(0, 26):
@@ -23,16 +23,22 @@ class Ciphers(commands.Cog):
             lower = ''.join(list(lower))
             translated = message.translate(str.maketrans(string.ascii_uppercase, upper)).translate(str.maketrans(string.ascii_lowercase, lower))
             allrot += '{}: {}\n'.format(i, translated)
-        
-        await ctx.send(f"{allrot}")
+            decoded=f"{allrot}"
+        if pipe != "none":
+            more=pipe.split('|')
+            decoded=pipline(encode_or_decode,decoded,more)
+            await ctx.send(decoded)
 
     @commands.command()
-    async def atbash(self, ctx, message):
+    async def atbash(self, ctx, message,pipe="none"):
         normal = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         changed = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
         trans = str.maketrans(normal, changed)
-        atbashed = message.translate(trans)
-        await ctx.send(atbashed)
+        decoded = message.translate(trans)
+        if pipe != "none":
+                more=pipe.split('|')
+                decoded=pipline(encode_or_decode,decoded,more)
+        await ctx.send(decoded)
 
 def setup(bot):
     bot.add_cog(Ciphers(bot))
