@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix='>')
 extensions = ['encoding_decoding', 'cipher', 'ctfs', 'utility']
 bot.remove_command('help')
 blacklisted = []
-cool_names = ['_Wh1t3r0se_#7515', 'BlackCoffe#2718', 'a.lil.sus#7939'] 
+cool_names = ['_Wh1t3r0se_#7515', 'BlackCoffee#2718', 'a.lil.sus#7939'] 
 # This is intended to be able to be circumvented.
 # If you do something like report a bug on  GITHUB.
 
